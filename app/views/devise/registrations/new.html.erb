@@ -1,34 +1,129 @@
-<h2 id="2">Sign up</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-9">
+      <div class="row">
+        <div class="col-lg-3">
+            <center><h2 id="login">Log in</h2></center>
+        </div>
+        <div class="col-lg-3">
+            <center><h2 id="signup">Sign up</h2></center>
+        </div>
+      </div>
+      
+      <div class="login">
+       
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          
+          <div class="field">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true %>
+          </div>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true %>
+          <div class="field">
+            <%= f.label :password %><br />
+            <%= f.password_field :password, autocomplete: "off" %>
+          </div>
+
+          <% if devise_mapping.rememberable? -%>
+            <div class="field">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+            </div>
+          <% end -%>
+
+          <div class="actions">
+            <%= f.submit "Log in" %>
+          </div>
+        <% end %>
+
+        <%= render "devise/shared/links" %>
+
+      </div>
+
+      <div class="signup" >
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= devise_error_messages! %>
+
+          <div class="field">
+            <%= f.label :name %><br />
+            <%= f.text_field :name, autofocus: true %>
+          </div>
+
+          <div class="field">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true %>
+          </div>
+
+          <div class="field">
+            <%= f.label :password %>
+            <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %><br />
+            <%= f.password_field :password, autocomplete: "off" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :password_confirmation %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "off" %>
+          </div></br>
+
+          <div class="actions">
+            <%= f.submit "Sign up" %>
+          </div></br>
+        <% end %>
+
+        <span>Already have an account?</span>&nbsp;<%= link_to "Log in", new_session_path(resource_name), style:"font-size: 15px;font-weight: bold;"%><br />
+
+      </div>
+
+    </div>
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+<script type="text/javascript">
+$('#login').click(function(){
+      $('.login').css('display', 'block')
+      $('.signup').css('display', 'none')
+      $('#login').css('border-bottom', '2px solid black')
+      $('#signup').css('border-bottom', 'none')
+    });
+$('#signup').click(function(){
+      $('.signup').css('display', 'block')
+      $('.login').css('display', 'none')
+      $('#signup').css('border-bottom', '2px solid black')
+      $('#login').css('border-bottom', 'none')
+    });
+</script>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
 
-<%= render "devise/shared/links" %>
+<style type="text/css">
+#login{
+  margin-right: 5%;
+  height: 1%;
+  border-bottom: none;
+}
+#signup{
+  height: 1%;
+  /*border-bottom: 1px solid black;*/
+}
+.login{
+  margin-top: 0%;
+  border: 1px solid grey; 
+  padding: 60px;
+  display: none;
+}
+.signup{
+  margin-top: 0%;
+  /*width:300px;*/
+  border: 1px solid grey;
+  padding: 60px;
+}
+h2{
+  text-shadow: 6px 3px 4px #a6a6a6;
+  border-bottom:2px solid black;
+}
+
+</style>

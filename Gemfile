@@ -16,7 +16,12 @@ gem 'therubyracer', platforms: :ruby
 
 gem 'devise'
 
- gem 'rails_12factor'
+gem "less-rails"
+
+gem "twitter-bootstrap-rails"
+
+# Use for posgresql on heroku deplyment
+gem 'rails_12factor'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
